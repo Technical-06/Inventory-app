@@ -1,0 +1,30 @@
+.navbar {
+  background: transparent !important;
+}
+
+.navbar-toolbar {
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.role-label {
+  margin-right: 8px;
+}
+
+.green-switch {
+  .MuiSwitch-thumb {
+    background-color: #9acd32;
+  }
+
+  .MuiSwitch-track {
+    background-color: #555;
+  }
+
+  .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track {
+    background-color: rgba(154, 205, 50, 0.4);
+  }
+}

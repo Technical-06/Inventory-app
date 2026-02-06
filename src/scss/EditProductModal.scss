@@ -1,0 +1,53 @@
+.edit-modal-paper {
+  background: #2a2d2a;
+  border-radius: 16px;
+  padding: 16px;
+  width: 520px;
+  max-width: 90vw;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.edit-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .title {
+    font-weight: 600;
+  }
+
+  .subtitle {
+    margin-top: 4px;
+    color: gray;
+  }
+}
+
+.edit-form-grid {
+  margin-top: 24px;
+}
+
+.modal-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.cancel-btn {
+  color: #9acd32;
+}
+
+.save-btn {
+  background: #9acd32;
+  color: #1a1c1f;
+  font-weight: 600;
+  padding: 6px 24px;
+
+  &:hover {
+    background: #8bbf2f;
+  }
+}
+
+.close-icon {
+  color: #9acd32;
+}

@@ -1,0 +1,41 @@
+.product-table-wrapper {
+  margin-top: 24px;
+  background: #1a1c1f;
+  border-radius: 8px;
+}
+
+.table-header {
+  background: #1a1c1f;
+}
+
+.header-chip {
+  background: #0f1113 !important;
+  color: #9acd32 !important;
+  font-weight: 500;
+  padding: 16px;
+ border-radius: 4px !important;
+}
+
+.disabled-row {
+  opacity: 0.5;
+}
+
+.action-icon {
+  transition: opacity 0.2s ease;
+}
+
+.action-edit {
+  color: #6cc070;
+}
+
+.action-delete {
+  color: #ff5252;
+}
+
+.action-disable {
+  color: #b388ff;
+}
+
+.icon-disabled {
+  color: #666 !important;
+}
