@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import type { PayloadAction } from "@reduxjs/toolkit"
-import { inventoryMock } from "../mocks/inventoryMock"
+import { fetchInventory } from "../api/inventoryApi"
 
 export interface Product {
  id: number
@@ -11,33 +11,51 @@ export interface Product {
  disabled?: boolean
 }
 
+export const loadInventory = createAsyncThunk(
+ "inventory/load",
+ async () => {
+  const data = await fetchInventory()
+  return data
+ }
+)
+
+interface InventoryState {
+ products: Product[]
+ role: "admin" | "user"
+}
+
+const initialState: InventoryState = {
+ products: [],
+ role: "admin"
+}
+
 const inventorySlice = createSlice({
  name: "inventory",
- initialState: {
-  products: inventoryMock,
-  role: "admin" as "admin" | "user"
- },
+ initialState,
  reducers: {
-  setRole(state, action) {
+  setRole(state, action: PayloadAction<"admin" | "user">) {
    state.role = action.payload
   },
+
   updateProduct(state, action: PayloadAction<Product>) {
    const i = state.products.findIndex(p => p.id === action.payload.id)
    if (i !== -1) state.products[i] = action.payload
   },
+
   deleteProduct(state, action: PayloadAction<number>) {
    state.products = state.products.filter(p => p.id !== action.payload)
   },
+
   disableProduct(state, action: PayloadAction<number>) {
    const p = state.products.find(p => p.id === action.payload)
-   if (p) {
-        if(p.disabled) {
-            p.disabled = false
-        } else {
-            p.disabled = true
-        }
-    }
+   if (p) p.disabled = !p.disabled
   }
+ },
+
+ extraReducers: builder => {
+  builder.addCase(loadInventory.fulfilled, (state, action) => {
+   state.products = action.payload
+  })
  }
 })
 
