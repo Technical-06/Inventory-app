@@ -9,11 +9,21 @@ import App from "./App"
 
 
 async function enableMocking() {
- if (import.meta.env.DEV) {
+ const shouldMock =
+  import.meta.env.DEV ||
+  import.meta.env.VITE_ENABLE_MSW === "true"
+
+ if (shouldMock) {
   const { worker } = await import("./mocks/browser")
-  return worker.start()
+
+  return worker.start({
+   serviceWorker: {
+    url: "/mockServiceWorker.js"
+   }
+  })
  }
 }
+
 
 enableMocking().then(() => {
  ReactDOM.createRoot(document.getElementById("root")!).render(
